@@ -1,4 +1,6 @@
 Skript jezici
+
+
 Prvi projekat
 
 Potrebno je napraviti veb aplikaciju koja ispunjava sledeće zahteve:
