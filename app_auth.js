@@ -17,7 +17,7 @@ app.post('/register', (req, res) => {
         name: req.body.name,
         email: req.body.email,
         admin: req.body.admin,
-        password: bcrypt.hashSync(req.body.password, 10)
+        password:   req.body.password         //bcrypt.hashSync
     };
     var curTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
     sequelize.query('INSERT INTO users (id, username, password, admin, registered, last_login) VALUES(null, "'+obj.name+'", "'+obj.password+'", "'+obj.admin+'", "'+curTime+'", "'+curTime+'")')

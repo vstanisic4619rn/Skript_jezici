@@ -29,7 +29,18 @@ function init() {
             const lst = document.getElementById('msgLst');
             isAdmin && data.forEach( el => {
                 console.log(el);
-                lst.innerHTML += `<li>ID: ${el.id}, Recenzija: ${el.body}, User: ${el.user_id}</li>`;
+                fetch('http://127.0.0.1:8000/api/getusername', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({user_id: el.user_id})
+                    })
+                    .then( res => res.json() )
+                    .then( curUserName => {
+                        lst.innerHTML += `<li>ID: ${el.id}, Recenzija: ${el.body}, User: ${curUserName[0].username}</li>`;
+                    })
+              
             });
         });
 
@@ -42,6 +53,7 @@ function init() {
             .then( data => {
                 const lst = document.getElementById('productList');
                 !isAdmin && data[0].forEach( el => {
+            
                     lst.innerHTML += `<div class="col-md-6 mb-2"><a href="?pid=${el.id}" class="btn btn-success w-100">${el.product_name}</a></div>`;
                 });
             });

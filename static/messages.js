@@ -49,6 +49,11 @@ route.post('/add_comment', (req, res) => {
         .then( rows => res.json(rows) )
         .catch( err => res.status(500).json(err) );
 });
+route.post('/getusername', (req, res) => {
+    sequelize.query("SELECT username FROM users WHERE id="+req.body.user_id+"", { type: QueryTypes.SELECT })
+        .then( rows => res.json(rows) )
+        .catch( err => res.status(500).json(err) );
+});
 route.post('/messages', (req, res) => {
     
     Users.findOne({ where: { id: req.user.userId } })
