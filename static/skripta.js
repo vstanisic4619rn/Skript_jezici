@@ -27,9 +27,9 @@ function init() {
         .then( res => res.json() )
         .then( data => {
             const lst = document.getElementById('msgLst');
-            isAdmin && data[0].forEach( el => {
+            isAdmin && data.forEach( el => {
                 console.log(el);
-                lst.innerHTML += `<li>ID: ${el.id}, Body: ${el.body}, User: ${el.user_id}</li>`;
+                lst.innerHTML += `<li>ID: ${el.id}, Recenzija: ${el.body}, User: ${el.user_id}</li>`;
             });
         });
 
